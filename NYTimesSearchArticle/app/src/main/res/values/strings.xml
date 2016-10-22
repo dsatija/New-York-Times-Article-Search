@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">NYTimesSearchArticle</string>
+    <string name="action_settings">Settings</string>
+    <string name="sample_text">Sample Text</string>
+</resources>
