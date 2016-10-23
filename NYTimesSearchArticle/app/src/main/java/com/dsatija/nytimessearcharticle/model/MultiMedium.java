@@ -1,9 +1,11 @@
 package com.dsatija.nytimessearcharticle.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Disha on 10/20/2016.
  */
-public class MultiMedium {
+public class MultiMedium implements Serializable {
     private Integer width;
     private String url;
     private Integer height;

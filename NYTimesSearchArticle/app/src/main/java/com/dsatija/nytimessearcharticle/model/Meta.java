@@ -1,9 +1,11 @@
 package com.dsatija.nytimessearcharticle.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Disha on 10/20/2016.
  */
-public class Meta {
+public class Meta implements Serializable {
     private Integer hits;
     private Integer time;
     private Integer offset;

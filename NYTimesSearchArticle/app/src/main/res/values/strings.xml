@@ -1,5 +1,25 @@
 <resources>
-    <string name="app_name">NYTimesSearchArticle</string>
+    <string name="app_name">NYTimes Article Search</string>
     <string name="action_settings">Settings</string>
     <string name="sample_text">Sample Text</string>
+    <string name="filter">Filter:</string>
+    <string name="settings_title">Filter Search Results</string>
+    <string name="sort_order_tile">Sort Order</string>
+    <string name="sort_order_prompt">Choose a sort order</string>
+    <string name="string_begin_date_title">Begin Date</string>
+    <string name="string_date_hint">Click to set date..</string>
+    <string name="x">X</string>
+
+    <string name="string_news_desk_title">News Desk</string>
+    <string name="string_chk_arts">Arts</string>
+    <string name="string_chk_fashion_and_style">Fashion and Style</string>
+    <string name="string_chk_sports">Sports</string>
+    <string name="string_cancel">Cancel</string>
+    <string name="string_save">Save</string>
+    <string-array name="sort_order_options">
+        <item>Default</item>
+        <item>Newest</item>
+        <item>Oldest</item>
+    </string-array>
+
 </resources>

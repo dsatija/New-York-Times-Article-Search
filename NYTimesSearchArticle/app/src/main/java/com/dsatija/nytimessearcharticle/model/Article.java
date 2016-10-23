@@ -1,12 +1,13 @@
 package com.dsatija.nytimessearcharticle.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Disha on 10/20/2016.
  */
-public class Article {
+public class Article implements Serializable{
     private String web_url;
     private String snippet;
     private String lead_paragraph;

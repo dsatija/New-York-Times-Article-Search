@@ -1,9 +1,11 @@
 package com.dsatija.nytimessearcharticle.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Disha on 10/20/2016.
  */
-public class HeadLine {
+public class HeadLine implements Serializable {
     private String main;
 
 

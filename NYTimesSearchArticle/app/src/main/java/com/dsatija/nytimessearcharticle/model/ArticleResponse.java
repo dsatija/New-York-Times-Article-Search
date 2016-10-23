@@ -1,12 +1,13 @@
 package com.dsatija.nytimessearcharticle.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Disha on 10/20/2016.
  */
-public class ArticleResponse {
+public class ArticleResponse implements Serializable {
     private Meta meta;
     private List<Article> docs = new ArrayList<Article>();
 

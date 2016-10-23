@@ -1,12 +1,11 @@
 package com.dsatija.nytimessearcharticle.model;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Serializable;
 
 /**
  * Created by Disha on 10/20/2016.
  */
-public class Legacy
+public class Legacy implements Serializable
 {
     private String thumbnailheight;
     private String thumbnail;

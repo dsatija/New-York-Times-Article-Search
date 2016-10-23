@@ -1,9 +1,11 @@
 package com.dsatija.nytimessearcharticle.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Disha on 10/20/2016.
  */
-public class ArticleResponseVO {
+public class ArticleResponseVO implements Serializable {
     private ArticleResponse response;
     private String status;
     private String copyright;
