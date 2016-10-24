@@ -64,7 +64,7 @@ public class ArticleAdapter extends
             String thumbNail = article.getMultimedia().get(0).getUrl();
             if (!TextUtils.isEmpty(thumbNail)) {
                 //Picasso.with(getContext()).load(thumbnail).into(imageView);
-                Glide.with(getContext()).load(thumbNail).centerCrop().
+                Glide.with(getContext()).load(thumbNail).fitCenter().
                         into(ivImage);
             }
         }

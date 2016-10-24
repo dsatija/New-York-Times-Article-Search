@@ -1,4 +1,4 @@
-package com.dsatija.nytimessearcharticle;
+package com.dsatija.nytimessearcharticle.activities;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.support.customtabs.CustomTabsIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.dsatija.nytimessearcharticle.R;
 import com.dsatija.nytimessearcharticle.model.Article;
 
 public class ArticleActivity extends AppCompatActivity {

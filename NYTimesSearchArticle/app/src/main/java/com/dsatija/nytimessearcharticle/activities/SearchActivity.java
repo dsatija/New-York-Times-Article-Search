@@ -1,4 +1,4 @@
-package com.dsatija.nytimessearcharticle;
+package com.dsatija.nytimessearcharticle.activities;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -21,6 +21,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 
+import com.dsatija.nytimessearcharticle.R;
+import com.dsatija.nytimessearcharticle.activities.ArticleActivity;
 import com.dsatija.nytimessearcharticle.adapter.ArticleAdapter;
 import com.dsatija.nytimessearcharticle.fragments.FilterFragment;
 import com.dsatija.nytimessearcharticle.listeners.EndlessRecyclerViewScrollListener;
