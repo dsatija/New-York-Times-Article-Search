@@ -11,43 +11,33 @@ public class ArticleResponse implements Serializable {
     private Meta meta;
     private List<Article> docs = new ArrayList<Article>();
 
-
     /**
-     *
-     * @return
-     * The meta
+     * @return The meta
      */
     public Meta getMeta() {
         return meta;
     }
 
     /**
-     *
-     * @param meta
-     * The meta
+     * @param meta The meta
      */
     public void setMeta(Meta meta) {
         this.meta = meta;
     }
 
     /**
-     *
-     * @return
-     * The users
+     * @return The users
      */
     public List<Article> getDocs() {
         return docs;
     }
 
     /**
-     *
-     * @param articles
-     * The articles
+     * @param articles The articles
      */
     public void setDocs(List<Article> articles) {
         this.docs = articles;
     }
-
 
 
 }

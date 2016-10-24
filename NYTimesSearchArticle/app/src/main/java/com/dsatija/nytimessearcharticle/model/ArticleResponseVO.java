@@ -10,61 +10,47 @@ public class ArticleResponseVO implements Serializable {
     private String status;
     private String copyright;
 
-
     /**
-     *
-     * @return
-     * The response
+     * @return The response
      */
     public ArticleResponse getResponse() {
         return response;
     }
 
     /**
-     *
-     * @param response
-     * The response
+     * @param response The response
      */
     public void setResponse(ArticleResponse response) {
         this.response = response;
     }
 
     /**
-     *
-     * @return
-     * The status
+     * @return The status
      */
     public String getStatus() {
         return status;
     }
 
     /**
-     *
-     * @param status
-     * The status
+     * @param status The status
      */
     public void setStatus(String status) {
         this.status = status;
     }
 
     /**
-     *
-     * @return
-     * The copyright
+     * @return The copyright
      */
     public String getCopyright() {
         return copyright;
     }
 
     /**
-     *
-     * @param copyright
-     * The copyright
+     * @param copyright The copyright
      */
     public void setCopyright(String copyright) {
         this.copyright = copyright;
     }
-
 
 
 }

@@ -49,7 +49,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SearchActivity extends AppCompatActivity  implements FilterFragment.OnSettingsChangeListener, DatePickerDialog.OnDateSetListener {
+public class SearchActivity extends AppCompatActivity implements FilterFragment.OnSettingsChangeListener, DatePickerDialog.OnDateSetListener {
     String mainPageQuery = null;
     RecyclerView recyclerView;
     private StaggeredGridLayoutManager gaggeredGridLayoutManager;
@@ -59,8 +59,7 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
     FilterFragment settingsDialog;
     SearchFilter searchFilter;
     public static final String FILENAME = "searchFilter.txt";
-    EndlessRecyclerViewScrollListener eld=null;
-
+    EndlessRecyclerViewScrollListener eld = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,9 +92,8 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
         return filter;
     }
 
-
     private void setEndlessScrolling() {
-        eld=new EndlessRecyclerViewScrollListener(gaggeredGridLayoutManager) {
+        eld = new EndlessRecyclerViewScrollListener(gaggeredGridLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount) {
                 customLoadMoreDataFromApi(mainPageQuery, page);
@@ -130,8 +128,6 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-
-
                                 Intent i = new Intent(getApplicationContext(), ArticleActivity.class);
                                 Article article = gaggeredList.get(position);
                                 i.putExtra("article", article);
@@ -144,7 +140,8 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
                                 // ...
                             }
                         }));
-        getArticles("top stories",0);
+        getArticles("top stories", 0);
+
     }
 
     @Override
@@ -155,8 +152,8 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
         MenuItem searchItem = menu.findItem(R.id.action_search);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         // Expand the search view and request focus
-        searchItem.expandActionView();
-        searchView.requestFocus();
+        //searchItem.expandActionView();
+        //searchView.requestFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -172,7 +169,7 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
 
             @Override
             public boolean onQueryTextChange(String newText) {
-               return false;
+                return false;
             }
 
         });
@@ -205,9 +202,9 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
 
     public void getArticles(String query, int page) {
         String url = "https://api.nytimes.com/";
-        Map<String,String>queryParams=new HashMap<>();
+        Map<String, String> queryParams = new HashMap<>();
         Log.d("Debug", "url" + url);
-        queryParams=getQueryParams(query,page);
+        queryParams = getQueryParams(query, page);
         List<Article> articles = new ArrayList<>();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(url)
@@ -248,11 +245,11 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
 
     }
 
-    public List<Article> loadMoreArticles(String query, int page) {
+    public void loadMoreArticles(String query, int page) {
         String url = "https://api.nytimes.com/";
-        Map<String,String>queryParams=new HashMap<>();
+        Map<String, String> queryParams = new HashMap<>();
         Log.d("Debug", "url" + url);
-        queryParams=getQueryParams(query,page);
+        queryParams = getQueryParams(query, page);
         List<Article> articles = new ArrayList<>();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(url)
@@ -289,7 +286,7 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
 
             }
         });
-        return articles;
+
     }
 
     @Override
@@ -319,7 +316,7 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
     public void saveSearchFilterSettings(SearchFilter newSearchFilter) {
         searchFilter = newSearchFilter;
         saveSearchFilter(searchFilter);
-        getArticles(mainPageQuery,0);
+        getArticles(mainPageQuery, 0);
     }
 
     private Boolean isNetworkAvailable() {
@@ -328,23 +325,15 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
     }
-    public boolean isOnline() {
-        Runtime runtime = Runtime.getRuntime();
-        try {
-            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
-            int     exitValue = ipProcess.waitFor();
-            return (exitValue == 0);
-        } catch (IOException e)          { e.printStackTrace(); }
-        catch (InterruptedException e) { e.printStackTrace(); }
-        return false;
-    }
 
-    public Map<String,String>getQueryParams(String query,int page){
-        Map<String,String>params=new HashMap<>();
-        mainPageQuery=query;
-        params.put("api-key",apiKey);
-        params.put("q",query);
-        params.put("page",String.valueOf(page));
+
+
+    public Map<String, String> getQueryParams(String query, int page) {
+        Map<String, String> params = new HashMap<>();
+        mainPageQuery = query;
+        params.put("api-key", apiKey);
+        params.put("q", query);
+        params.put("page", String.valueOf(page));
         String beginDateYYYYMMDD = searchFilter.getBeginDate(SearchFilter.FORMAT_YYYYMMDD);
         if (!TextUtils.isEmpty(beginDateYYYYMMDD)) {
             params.put("begin_date", beginDateYYYYMMDD);
@@ -353,7 +342,6 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
         if (!TextUtils.isEmpty(sortOrder)) {
             params.put("sort", sortOrder);
         }
-
         Set ndTopics = searchFilter.getNewsDeskTopics();
         if (ndTopics.size() > 0) {
             // &fq=news_desk:("Sports" "Foreign")

@@ -8,25 +8,19 @@ import java.io.Serializable;
 public class HeadLine implements Serializable {
     private String main;
 
-
     /**
-     *
-     * @return
-     * The main
+     * @return The main
      */
     public String getMain() {
         return main;
     }
 
     /**
-     *
-     * @param main
-     * The main
+     * @param main The main
      */
     public void setMain(String main) {
         this.main = main;
     }
-
 
 
 }

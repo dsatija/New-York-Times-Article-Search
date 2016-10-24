@@ -56,21 +56,19 @@ public class ArticleAdapter extends
         Article article = mArticles.get(position);
         // Set item views based on your views and data model
         TextView textView = viewHolder.tvTitle;
-
-        if(article.getHeadLine()!=null) {
+        if (article.getHeadLine() != null) {
             textView.setText(article.getHeadLine().getMain());
         }
         ImageView ivImage = viewHolder.ivImage;
-        if(article.getMultimedia()!=null && !article.getMultimedia().isEmpty()) {
+        if (article.getMultimedia() != null && !article.getMultimedia().isEmpty()) {
             String thumbNail = article.getMultimedia().get(0).getUrl();
             if (!TextUtils.isEmpty(thumbNail)) {
                 //Picasso.with(getContext()).load(thumbnail).into(imageView);
-                Glide.with(getContext()).load(thumbNail).fitCenter().into(ivImage);
+                Glide.with(getContext()).load(thumbNail).centerCrop().
+                        into(ivImage);
             }
         }
         super.onViewRecycled(viewHolder);
-       // Glide.clear(ivImage);
-
 
     }
 
@@ -97,7 +95,7 @@ public class ArticleAdapter extends
 
     }
 
-    public void swap(List<Article> articles){
+    public void swap(List<Article> articles) {
         mArticles.clear();
         mArticles.addAll(articles);
         notifyDataSetChanged();

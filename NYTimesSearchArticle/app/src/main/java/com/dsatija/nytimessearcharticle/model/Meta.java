@@ -10,61 +10,47 @@ public class Meta implements Serializable {
     private Integer time;
     private Integer offset;
 
-
     /**
-     *
-     * @return
-     * The hits
+     * @return The hits
      */
     public Integer getHits() {
         return hits;
     }
 
     /**
-     *
-     * @param hits
-     * The hits
+     * @param hits The hits
      */
     public void setHits(Integer hits) {
         this.hits = hits;
     }
 
     /**
-     *
-     * @return
-     * The time
+     * @return The time
      */
     public Integer getTime() {
         return time;
     }
 
     /**
-     *
-     * @param time
-     * The time
+     * @param time The time
      */
     public void setTime(Integer time) {
         this.time = time;
     }
 
     /**
-     *
-     * @return
-     * The offset
+     * @return The offset
      */
     public Integer getOffset() {
         return offset;
     }
 
     /**
-     *
-     * @param offset
-     * The offset
+     * @param offset The offset
      */
     public void setOffset(Integer offset) {
         this.offset = offset;
     }
-
 
 
 }

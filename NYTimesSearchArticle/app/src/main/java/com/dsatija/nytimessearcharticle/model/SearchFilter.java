@@ -13,19 +13,15 @@ import java.util.Set;
 public class SearchFilter implements Serializable {
     public static final String FORMAT_YYYYMMDD = "yyyyMMdd"; //"YYYYMMDD";
     public static final String FORMAT_MONTH_DAY_YEAR = "MM/dd/yyyy";
-
     public static final String SORT_ORDER_DEFAULT = "Default";
     public static final String SORT_ORDER_NEWEST = "Newest";
     public static final String SORT_ORDER_OLDEST = "Oldest";
-
     public static final String NEWS_DESK_ARTS = "Arts";
     public static final String NEWS_DESK_FASHION_AND_STYLE = "Fashion & Style";
     public static final String NEWS_DESK_SPORTS = "Sports";
-
     public static final String BEGIN_DATE_TIMESTAMP_ID = "beginDateTimestamp";
     public static final String SORT_ORDER_ID = "sortOrder";
     public static final String TOPICS_ID = "topics";
-
     Long beginDateTimestamp;
     String sortOrder;
     HashMap<String, String> topicFilter;
@@ -69,7 +65,6 @@ public class SearchFilter implements Serializable {
         }
         return b;
     }
-
     // begin date
 
     public void setBeginDate(int year, int month, int day) {
@@ -101,7 +96,6 @@ public class SearchFilter implements Serializable {
         }
         return str.toString();
     }
-
     // sort order
 
     public void setSortOrder(String newSortOrder) {
@@ -126,7 +120,6 @@ public class SearchFilter implements Serializable {
         }
         return null;
     }
-
     // topics
 
     public void addNewsDeskTopic(String topic) {
@@ -146,7 +139,6 @@ public class SearchFilter implements Serializable {
     public boolean hasTopicChecked(String topic) {
         return topicFilter.containsKey(topic);
     }
-
     // general
 
     public boolean isFilterSet() {
@@ -164,11 +156,9 @@ public class SearchFilter implements Serializable {
             return "";
         }
         StringBuilder sb = new StringBuilder();
-
         if (getNewsDeskTopics().size() > 0) {
             sb.append(StringUtils.join(getNewsDeskTopics().toArray(), ", "));
         }
-
         String str = getBeginDate(FORMAT_MONTH_DAY_YEAR);
         if (!TextUtils.isEmpty(str)) {
             if (sb.length() > 0) {
@@ -182,8 +172,6 @@ public class SearchFilter implements Serializable {
             }
             sb.append(getSortOrder());
         }
-
-
         return sb.toString();
     }
 

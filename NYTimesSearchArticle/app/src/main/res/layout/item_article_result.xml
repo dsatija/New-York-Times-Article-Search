@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cvCardView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    card_view:cardUseCompatPadding="true"
+    android:layout_marginBottom="16dp"
     card_view:cardCornerRadius="8dp"
-    android:layout_marginBottom="16dp">
+    card_view:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,23 +18,24 @@
             android:id="@+id/ivImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:src="@mipmap/ic_launcher"
             android:contentDescription="@string/action_settings"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            tools:src="@mipmap/ic_launcher"/>
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
-            tools:text="@string/sample_text"
-            android:textColor="#ffffff"
+            android:layout_alignParentBottom="true"
             android:layout_below="@+id/ivImage"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="center_horizontal"
+            android:maxLines="3"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
-            android:gravity="center_horizontal"
-            android:layout_alignParentBottom="true"
-            android:background="#1976D2"/>
+            android:textColor="#ffffff"
+            android:textSize="13sp"
+            tools:text="@string/sample_text"/>
 
     </RelativeLayout>
 

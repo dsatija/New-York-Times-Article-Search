@@ -61,18 +61,14 @@ public class FilterFragment extends DialogFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         // restore search filter from bundle
         searchFilter = new SearchFilter(getArguments());
-
         ArrayList<String> sortOrderOptions = new ArrayList<String>();
         sortOrderOptions.add(SearchFilter.SORT_ORDER_DEFAULT);
         sortOrderOptions.add(SearchFilter.SORT_ORDER_NEWEST);
         sortOrderOptions.add(SearchFilter.SORT_ORDER_OLDEST);
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_item, sortOrderOptions);
-
         Spinner sSortOrder = (Spinner) view.findViewById(R.id.sSortOrder);
         if (searchFilter.getSortOrder() != null) {
             sSortOrder.setSelection(adapter.getPosition(searchFilter.getSortOrder()));
@@ -83,16 +79,14 @@ public class FilterFragment extends DialogFragment {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> arg0) {}
+            public void onNothingSelected(AdapterView<?> arg0) {
+            }
         });
-
         tvBeginDate = (TextView) view.findViewById(R.id.tvBeginDate);
         tvBeginDate.setText(searchFilter.getBeginDate(SearchFilter.FORMAT_MONTH_DAY_YEAR));
         tvBeginDate.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View arg0) {
-
                 Bundle b = new Bundle();
                 if (searchFilter.getBeginDateTimestamp() != null) {
                     b.putLong("beginDateTimestamp", searchFilter.getBeginDateTimestamp());
@@ -103,7 +97,6 @@ public class FilterFragment extends DialogFragment {
 
             }
         });
-
         tvClearDate = (TextView) view.findViewById(R.id.tvClearDate);
         tvClearDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,15 +106,12 @@ public class FilterFragment extends DialogFragment {
                 tvClearDate.setVisibility(View.INVISIBLE);
             }
         });
-
         if (searchFilter.getBeginDateTimestamp() != null) {
             tvClearDate.setVisibility(View.VISIBLE);
         }
-
         CheckBox cbArts = (CheckBox) view.findViewById(R.id.cbArts);
         cbArts.setChecked(searchFilter.hasTopicChecked(SearchFilter.NEWS_DESK_ARTS));
         cbArts.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 if (((CheckBox) v).isChecked()) {
@@ -131,11 +121,9 @@ public class FilterFragment extends DialogFragment {
                 }
             }
         });
-
         CheckBox cbFashionAndStyle = (CheckBox) view.findViewById(R.id.cbFashionAndStyle);
         cbFashionAndStyle.setChecked(searchFilter.hasTopicChecked(SearchFilter.NEWS_DESK_FASHION_AND_STYLE));
         cbFashionAndStyle.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 if (((CheckBox) v).isChecked()) {
@@ -145,11 +133,9 @@ public class FilterFragment extends DialogFragment {
                 }
             }
         });
-
         CheckBox cbSports = (CheckBox) view.findViewById(R.id.cbSports);
         cbSports.setChecked(searchFilter.hasTopicChecked(SearchFilter.NEWS_DESK_SPORTS));
         cbSports.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 if (((CheckBox) v).isChecked()) {
@@ -159,7 +145,6 @@ public class FilterFragment extends DialogFragment {
                 }
             }
         });
-
         Button btnSave = (Button) view.findViewById(R.id.btnSaveSettings);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,7 +153,6 @@ public class FilterFragment extends DialogFragment {
                 getDialog().dismiss();
             }
         });
-
         Button btnCancel = (Button) view.findViewById(R.id.btnCancelSettings);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override

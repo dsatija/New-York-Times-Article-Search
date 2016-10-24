@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NYTimes Article Search</string>
+    <string name="app_name">NYT Articles</string>
     <string name="action_settings">Settings</string>
     <string name="sample_text">Sample Text</string>
     <string name="filter">Filter:</string>
@@ -16,6 +16,7 @@
     <string name="string_chk_sports">Sports</string>
     <string name="string_cancel">Cancel</string>
     <string name="string_save">Save</string>
+    <string name="search">Search</string>
     <string-array name="sort_order_options">
         <item>Default</item>
         <item>Newest</item>
