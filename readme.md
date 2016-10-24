@@ -49,8 +49,8 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/nfto4Ur.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-<img src='http://i.imgur.com/LWbJwJw.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/dsatija/New-York-Times-Article-Search/blob/master/nyt_2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/dsatija/New-York-Times-Article-Search/blob/master/nyt_3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
