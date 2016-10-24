@@ -50,7 +50,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SearchActivity extends AppCompatActivity  implements FilterFragment.OnSettingsChangeListener, DatePickerDialog.OnDateSetListener {
-    int page = 0;
     String mainPageQuery = null;
     RecyclerView recyclerView;
     private StaggeredGridLayoutManager gaggeredGridLayoutManager;
@@ -60,6 +59,8 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
     FilterFragment settingsDialog;
     SearchFilter searchFilter;
     public static final String FILENAME = "searchFilter.txt";
+    EndlessRecyclerViewScrollListener eld=null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,15 +95,13 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
 
 
     private void setEndlessScrolling() {
-        recyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener
-                (gaggeredGridLayoutManager) {
+        eld=new EndlessRecyclerViewScrollListener(gaggeredGridLayoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount) {
-                // Triggered only when new data needs to be appended to the list
-                // Add whatever code is needed to append new items to the bottom of the list
                 customLoadMoreDataFromApi(mainPageQuery, page);
             }
-        });
+        };
+        recyclerView.addOnScrollListener(eld);
     }
 
     // Append more data into the adapter
@@ -111,7 +110,7 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
         // Send an API request to retrieve appropriate data using the offset value as a parameter.
         //  --> Deserialize API response and then construct new objects to append to the adapter
         //  --> Notify the adapter of the changes
-        getArticles(query, page);
+        loadMoreArticles(query, page);
     }
 
     private void setViews() {
@@ -161,12 +160,9 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if(gaggeredList!=null&&!gaggeredList.isEmpty()){
-                    gaggeredList.clear();
-                }
                 mainPageQuery = query;
                 // perform query here
-                gaggeredList = getArticles(query, page);
+                getArticles(query, 0);
                 Log.d("GAGERRED LIST", gaggeredList.toString());
                 // workaround to avoid issues with some emulators and keyboard devices firing twice if a keyboard enter is used
                 // see https://code.google.com/p/android/issues/detail?id=24599
@@ -207,7 +203,52 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
 
     }
 
-    public List<Article> getArticles(String query, int page) {
+    public void getArticles(String query, int page) {
+        String url = "https://api.nytimes.com/";
+        Map<String,String>queryParams=new HashMap<>();
+        Log.d("Debug", "url" + url);
+        queryParams=getQueryParams(query,page);
+        List<Article> articles = new ArrayList<>();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RestInterface service = retrofit.create(RestInterface.class);
+        Call<ArticleResponseVO> call = service.getArticles(queryParams);
+        call.enqueue(new Callback<ArticleResponseVO>() {
+            @Override
+            public void onResponse(Call<ArticleResponseVO> call, Response<ArticleResponseVO> response) {
+                try {
+                        /*gaggeredList.addAll(response.body().getResponse().getDocs());
+                        adapter.setmArticles(gaggeredList);
+                        adapter.notifyDataSetChanged();*/
+                    if (response.body() != null && response.body().getResponse() != null && response.body().getResponse()
+                            .getDocs() != null && !response.body().getResponse().getDocs().isEmpty()) {
+                        adapter.swap(response.body().getResponse().getDocs());
+                        eld.resetState();
+                        //setViews();
+                        Log.d("Articles:", gaggeredList.toString());
+
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ArticleResponseVO> call, Throwable t) {
+                Log.d("Debugmessage", t.getMessage());
+                Log.d("Debug", "failed");
+                t.printStackTrace();
+
+            }
+        });
+
+    }
+
+    public List<Article> loadMoreArticles(String query, int page) {
         String url = "https://api.nytimes.com/";
         Map<String,String>queryParams=new HashMap<>();
         Log.d("Debug", "url" + url);
@@ -226,12 +267,13 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
                     if (response.body() != null && response.body().getResponse() != null && response.body().getResponse()
                             .getDocs() != null && !response.body().getResponse().getDocs().isEmpty()) {
                         gaggeredList.addAll(response.body().getResponse().getDocs());
-                        adapter.setmArticles(gaggeredList);
-                        adapter.notifyDataSetChanged();
-                        //setViews();
+                        int cursize = adapter.getItemCount();
+                        int size = gaggeredList.size();
+                        //adapter.setmArticles(gaggeredList);
+                        adapter.notifyItemRangeChanged(cursize, size - 1);
                         Log.d("Articles:", gaggeredList.toString());
-                    }
 
+                    }
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -277,9 +319,6 @@ public class SearchActivity extends AppCompatActivity  implements FilterFragment
     public void saveSearchFilterSettings(SearchFilter newSearchFilter) {
         searchFilter = newSearchFilter;
         saveSearchFilter(searchFilter);
-        if(gaggeredList!=null&&!gaggeredList.isEmpty()){
-            gaggeredList.clear();
-        }
         getArticles(mainPageQuery,0);
     }
 

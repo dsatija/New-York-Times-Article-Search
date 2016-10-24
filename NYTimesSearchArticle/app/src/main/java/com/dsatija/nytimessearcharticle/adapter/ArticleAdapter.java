@@ -96,4 +96,10 @@ public class ArticleAdapter extends
 
 
     }
+
+    public void swap(List<Article> articles){
+        mArticles.clear();
+        mArticles.addAll(articles);
+        notifyDataSetChanged();
+    }
 }
