@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+    >
+
+    <TextView
+        android:id="@+id/tvBeginDateTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/string_begin_date_title"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvBeginDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sSortOrder"
+        android:layout_alignTop="@+id/tvBeginDateTitle"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@+id/tvNewsDeskTitle"
+        android:hint="@string/string_date_hint"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/tvClearDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tvBeginDate"
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@+id/tvBeginDate"
+        android:hint="x"
+        android:textSize="15sp"
+        android:visibility="invisible"/>
+
+
+    <TextView
+        android:id="@+id/tvSortOrderTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvBeginDateTitle"
+        android:layout_margin="20dp"
+        android:text="@string/sort_order_tile"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <Spinner
+        android:id="@+id/sSortOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tvSortOrderTitle"
+        android:layout_below="@+id/tvBeginDateTitle"
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@+id/tvNewsDeskTitle"
+        android:entries="@array/sort_order_options"
+        android:prompt="@string/sort_order_prompt"/>
+
+    <TextView
+        android:id="@+id/tvNewsDeskTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sSortOrder"
+        android:layout_margin="20dp"
+        android:maxWidth="100dp"
+        android:text="@string/string_news_desk_title"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <CheckBox
+        android:id="@+id/cbArts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tvNewsDeskTitle"
+        android:layout_below="@+id/sSortOrder"
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@+id/tvNewsDeskTitle"
+        android:text="@string/string_chk_arts"/>
+
+    <CheckBox
+        android:id="@+id/cbFashionAndStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cbArts"
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@+id/tvNewsDeskTitle"
+        android:text="@string/string_chk_fashion_and_style"/>
+
+    <CheckBox
+        android:id="@+id/cbSports"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cbFashionAndStyle"
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@+id/tvNewsDeskTitle"
+        android:text="@string/string_chk_sports"/>
+
+    <Button
+        android:id="@+id/btnCancelSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@+id/cbSports"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/string_cancel"/>
+
+    <Button
+        android:id="@+id/btnSaveSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@+id/cbSports"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/btnCancelSettings"
+        android:text="@string/string_save"/>
+
+</RelativeLayout>
